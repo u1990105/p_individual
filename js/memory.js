@@ -17,9 +17,11 @@ export var game = function(){
             this.callback();
         }
     };
-
+    
+    var options = localStorage.getItem("options")
     var lastCard;
-    var pairs = 2;
+    var pairs = options.pairs;
+    var difficulty = options.difficulty
     var points = 100;
 
     return {
