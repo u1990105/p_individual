@@ -29,7 +29,20 @@ export var game = function(){
             items = items.slice(0, pairs); // Agafem els primers
             items = items.concat(items);
             items.sort(() => Math.random() - 0.5); // Aleatòria
-            return items.map(item => Object.create(card, {front: {value:item}, callback: {value:call}}));
+            var cartas = items.map(item => Object.create(card, {front: {value:item}, callback: {value:call}}));
+            cartas.forEach(function(carta, index) {
+                carta.current = carta.front;
+                carta.clickable = false; 
+                setTimeout(() => {
+                    carta.current = back;
+                    carta.clickable = true; 
+                    carta.callback();
+                }, 1000);
+            });
+
+           
+
+            return cartas;
         },
         click: function (card){
             if (!card.clickable) return;
