@@ -18,7 +18,7 @@ export var game = function(){
         }
     };
     
-    var options = localStorage.getItem("options")
+    var options = JSON.parse(localStorage.getItem("options")||JSON.stringify(default_options));
     var lastCard;
     var pairs = options.pairs;
     var difficulty = options.difficulty
