@@ -35,11 +35,19 @@ export var game = function(){
             cartas.forEach(function(carta, index) {
                 carta.current = carta.front;
                 carta.clickable = false; 
+                var tiempo
+                if (difficulty == "easy"){
+                    tiempo = 3500
+                } else if (difficulty == "normal"){
+                    tiempo = 2500
+                }else{
+                    tiempo = 1000
+                }
                 setTimeout(() => {
                     carta.current = back;
                     carta.clickable = true; 
                     carta.callback();
-                }, 1000);
+                }, tiempo);
             });
 
            
@@ -59,7 +67,13 @@ export var game = function(){
                 }
                 else{
                     [card, lastCard].forEach(c=>c.goBack());
-                    points-=25;
+                    if (difficulty == "easy"){
+                        points-=15;
+                    } else if (difficulty == "normal"){
+                        points-=25;
+                    }else{
+                        points-=50;
+                    }
                     if (points <= 0){
                         alert ("Has perdut");
                         window.location.replace("../");
