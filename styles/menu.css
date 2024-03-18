@@ -8,14 +8,9 @@ button.center{
 	width: 6rem;
 	height: 3rem;
 	margin-top: 1rem;
-	border-radius: 15px;
 }
 
 #title{
-	color:rgb(99, 109, 241);
+	color:red;
 	text-align: center;
-}
-
-html {
-	background-color: aliceblue;
 }
