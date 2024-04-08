@@ -1,12 +1,10 @@
 addEventListener('load', function() {
-    document.getElementById('play').addEventListener('click', 
-    function(){
-        sessionStorage.removeItem("save");
-        window.location.assign("./html/phasergame.html");
+    document.getElementById('play').addEventListener('click', function(){
+        sessionStorage.removeItem("save"); // mmm mirar que es...
+        window.location.assign("./html/optionsMode.html");
     });
 
-    document.getElementById('saves').addEventListener('click', 
-    function(){
+    document.getElementById('saves').addEventListener('click', function(){
         fetch("./php/load.php",{
             method: "POST",
             body: "",
@@ -21,13 +19,11 @@ addEventListener('load', function() {
         .finally(()=>window.location.assign("./html/phasergame.html"));
     });
 
-    document.getElementById('options').addEventListener('click', 
-    function(){
+    document.getElementById('options').addEventListener('click', function(){
         window.location.assign("./html/options.html");
     });
 
-    document.getElementById('exit').addEventListener('click', 
-    function(){
+    document.getElementById('exit').addEventListener('click', function(){
         console.warn("No es pot sortir!");
     });
 });
