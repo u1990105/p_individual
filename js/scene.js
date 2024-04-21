@@ -19,8 +19,12 @@ export class PlayScene extends Phaser.Scene{
     create() {
         this.cameras.main.setBackgroundColor(0xBFFCFF);
 
+        console.log(this)
+        var offset_x = 73
+        var x = (this.game.config.width-(offset_x*2)) / 100
+
         this.g_cards = this.physics.add.staticGroup();
-        this.cards.forEach((c, i)=> this.g_cards.create(250 + 100*i, 300, c.current));
+        this.cards.forEach((c, i)=> this.g_cards.create(offset_x + (i%x)*100, 90 + (Math.trunc(i/x)) * 150, c.current));
 
         this.g_cards.children.iterate((c, i) => {
             c.setInteractive();
