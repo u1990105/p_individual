@@ -4,7 +4,7 @@ addEventListener('load', function() {
         window.location.assign("./html/optionsMode.html");
     });
 
-    document.getElementById('saves').addEventListener('click', function(){
+    document.getElementById('saves').addEventListener('click', function(){ // esto hay que cambiarlo hay que modificar la version de php por otra cosa, hay que eliminar el fetch
         fetch("./php/load.php",{
             method: "POST",
             body: "",

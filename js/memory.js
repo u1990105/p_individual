@@ -1,6 +1,22 @@
 export var game = function(){
     const back = '../resources/back.png';
-    const resources = ['../resources/cb.png', '../resources/co.png', '../resources/sb.png','../resources/so.png', '../resources/tb.png','../resources/to.png','../resources/sr.png', '../resources/tr.png','../resources/tr.png'];
+    const resources = [
+        '../resources/cb.png', 
+        '../resources/cg.png', 
+        '../resources/co.png',
+        '../resources/cr.png',
+        '../resources/cy.png',
+        '../resources/tb.png', 
+        '../resources/tg.png', 
+        '../resources/to.png',
+        '../resources/tr.png',
+        '../resources/ty.png',
+        '../resources/sb.png', 
+        '../resources/sg.png', 
+        '../resources/so.png',
+        '../resources/sr.png',
+        '../resources/sy.png'
+    ];
     const card = {
         current: back,
         clickable: true,
@@ -34,9 +50,8 @@ export var game = function(){
     var lastCard;
     var pairs = options.pairs;
     var difficulty = options.difficulty
-    var points = 100;
+    var points = 100; //vida
     var cards = []; // Llistat de cartes
-
     var mix = function(){
         var items = resources.slice(); // Copiem l'array
         items.sort(() => Math.random() - 0.5); // Aleatòria
@@ -65,23 +80,29 @@ export var game = function(){
             }
             else return mix().map(item => { // New game
                 cards.push(Object.create(card, { front: {value:item}, callback: {value:call}}));
-                cards.forEach(function(carta, index) {
-                    carta.current = carta.front;
-                    carta.clickable = false; 
-                    var tiempo
-                    if (difficulty == "easy"){
-                        tiempo = 3500
-                    } else if (difficulty == "normal"){
-                        tiempo = 2500
-                    }else{
-                        tiempo = 1000
-                    }
-                    setTimeout(() => {
-                        carta.current = back;
-                        carta.clickable = true; 
-                        carta.callback();
-                    }, tiempo);
-                });
+                if (sessionStorage.mode == "easy"){ // diferencia el modo de juego
+                    cards.forEach(function(carta, index) {
+                        carta.current = carta.front;
+                        carta.clickable = false; 
+                        var tiempo
+                        if (difficulty == "easy"){
+                            tiempo = 3500
+                        } else if (difficulty == "normal"){
+                            tiempo = 2500
+                        }else{
+                            tiempo = 1000
+                        }
+                        setTimeout(() => {
+                            carta.current = back;
+                            carta.clickable = true; 
+                            carta.callback();
+                        }, tiempo);
+                    });
+                } else {
+                    console.log("mode 2")
+                    //aplicar la dificultar y numero de cartas gradual
+                }
+                
                 return cards[cards.length-1];
             });
         },
