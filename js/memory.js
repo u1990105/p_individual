@@ -50,7 +50,10 @@ export var game = function(){
     var lastCard;
     var pairs = options.pairs;
     var difficulty = options.difficulty
-    var points = 100; //vida
+    var leveldif = options.leveldif
+    var pointRanking = options.pointRanking
+    var timeDecrement = options.timeDecrement
+    var health = 100; //vida
     var cards = []; // Llistat de cartes
     var mix = function(){
         var items = resources.slice(); // Copiem l'array
@@ -64,7 +67,7 @@ export var game = function(){
             if (sessionStorage.save){ // Load game
                 let partida = JSON.parse(sessionStorage.save);
                 pairs = partida.pairs;
-                points = partida.points;
+                health = partida.health;
                 partida.cards.map(item=>{
                     let it = Object.create(card);
                     it.front = item.front;
@@ -80,17 +83,17 @@ export var game = function(){
             }
             else return mix().map(item => { // New game
                 cards.push(Object.create(card, { front: {value:item}, callback: {value:call}}));
-                if (sessionStorage.mode == "easy"){ // diferencia el modo de juego
+                if (sessionStorage.mode == "mode1"){ // diferencia el modo de juego
                     cards.forEach(function(carta, index) {
                         carta.current = carta.front;
                         carta.clickable = false; 
-                        var tiempo
+                        var tiempo;
                         if (difficulty == "easy"){
-                            tiempo = 3500
+                            tiempo = 3500;
                         } else if (difficulty == "normal"){
-                            tiempo = 2500
+                            tiempo = 2500;
                         }else{
-                            tiempo = 1000
+                            tiempo = 1000;
                         }
                         setTimeout(() => {
                             carta.current = back;
@@ -113,27 +116,31 @@ export var game = function(){
                 if (card.check(lastCard)){
                     pairs--;
                     if (pairs <= 0){
-                        alert("Has guanyat amb " + points + " punts!");
-                        window.location.replace("../");
+                        alert("Has guanyat amb " + health + " punts!");
+                        if (sessionStorage.mode == "mode1"){
+                            window.location.replace("../");
+                        } else {
+                            window.location.reload();
+                        }
+                       
                     }
                 }
                 else{
                     [card, lastCard].forEach(c=>c.goBack());
-                    points-=25;
-                    if (points <= 0){
+                    health-=25;
+                    if (health <= 0){
                         alert ("Has perdut");
                         window.location.replace("../");
                     }
                 }
                 lastCard = null;
-            }
-            else lastCard = card; // Primera carta
+            } else lastCard = card; // Primera carta
         },
         save: function (){
             var partida = {
                 uuid: localStorage.uuid,
                 pairs: pairs,
-                points: points,
+                health: health,
                 cards: []
             };
             cards.forEach(c=>{
