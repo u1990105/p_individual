@@ -23,7 +23,6 @@ export class PlayScene extends Phaser.Scene{
         this.g_cards = this.physics.add.staticGroup();
         console.log(localStorage)
         this.cards.forEach((c, i)=>{ 
-            //tanto en el modo uno como en el dos hay tres cosas en el modo uno es statico mientras en el modo 2 es incremental, hay tres cosas la puntuacion
             //para cuando se haga el ranking pedir nombre de usaurio al iniciar partida en el modo 2 el ranking solo se bassa en el modo2 NO en el 1
             //tanto en el modo 1 o 2 no se requerie que se muestere la puntacion ni nada solo el canvan.
             //partidas: solo tiene que pillar la ultima partida, siempre estara guardando en el local storage, entonces hay que cambiar el boton de partidas por un boton tipo "carrgar ultima partida", si no hay ninguna partida muestra alerta y redirige a menu y si hay redirige al canvas supongo y empieza la partida

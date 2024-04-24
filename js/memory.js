@@ -27,7 +27,7 @@ export var game = function(){
                 this.current = back;
                 this.clickable = true;
                 this.callback();
-            }, 1000);
+            }, 500);
         },
         goFront: function (last){
             if (last)
@@ -45,14 +45,16 @@ export var game = function(){
         }
     };
 
-    
-    var options = JSON.parse(localStorage.getItem("options")||JSON.stringify(default_options));
+    var options = JSON.parse(localStorage.getItem("options"));
     var lastCard;
-    var pairs = options.pairs;
+    var leveldif = options.leveldif;
+    var pairs;
+    if (sessionStorage.mode == "mode1"){ 
+        pairs = options.pairs;
+    } else {
+        pairs = leveldif+1;
+    }
     var difficulty = options.difficulty
-    var leveldif = options.leveldif
-    var pointRanking = options.pointRanking
-    var timeDecrement = options.timeDecrement
     var health = 100; //vida
     var cards = []; // Llistat de cartes
     var mix = function(){
@@ -102,8 +104,16 @@ export var game = function(){
                         }, tiempo);
                     });
                 } else {
-                    console.log("mode 2")
-                    //aplicar la dificultar y numero de cartas gradual
+                    var tiempo = Math.max(4750-250*leveldif, 300);
+                    cards.forEach(function(carta, index) {
+                        carta.current = carta.front;
+                        carta.clickable = false; 
+                        setTimeout(() => {
+                            carta.current = back;
+                            carta.clickable = true; 
+                            carta.callback();
+                        }, tiempo);
+                    });
                 }
                 
                 return cards[cards.length-1];
@@ -120,14 +130,19 @@ export var game = function(){
                         if (sessionStorage.mode == "mode1"){
                             window.location.replace("../");
                         } else {
+                            options.leveldif++;
+                            options.pointRanking += health;
+                            localStorage.options = JSON.stringify(options);
                             window.location.reload();
                         }
-                       
                     }
-                }
-                else{
+                } else{
                     [card, lastCard].forEach(c=>c.goBack());
-                    health-=25;
+                    if (sessionStorage.mode == "mode1"){
+                        health -= 15;
+                    } else {
+                        health -= Math.min(5*leveldif, 100);
+                    }
                     if (health <= 0){
                         alert ("Has perdut");
                         window.location.replace("../");

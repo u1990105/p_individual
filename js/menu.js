@@ -1,7 +1,7 @@
 addEventListener('load', function() {
     document.getElementById('play').addEventListener('click', function(){
         sessionStorage.removeItem("save"); // mmm mirar que es...
-        window.location.assign("./html/optionsMode.html");
+        window.location.assign("./html/options.html");
     });
 
     document.getElementById('saves').addEventListener('click', function(){ // esto hay que cambiarlo hay que modificar la version de php por otra cosa, hay que eliminar el fetch
@@ -17,10 +17,6 @@ addEventListener('load', function() {
         .then(partida=>sessionStorage.save = partida)
         .catch(err=>sessionStorage.save = localStorage.save)
         .finally(()=>window.location.assign("./html/phasergame.html"));
-    });
-
-    document.getElementById('options').addEventListener('click', function(){
-        window.location.assign("./html/options.html");
     });
 
     document.getElementById('exit').addEventListener('click', function(){
