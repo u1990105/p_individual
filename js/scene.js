@@ -21,7 +21,6 @@ export class PlayScene extends Phaser.Scene{
         var offset_x = 300;
         var x = Math.trunc((this.game.config.width-(offset_x*2)) / 100);
         this.g_cards = this.physics.add.staticGroup();
-        console.log(localStorage)
         this.cards.forEach((c, i)=>{ 
             //para cuando se haga el ranking pedir nombre de usaurio al iniciar partida en el modo 2 el ranking solo se bassa en el modo2 NO en el 1
             //tanto en el modo 1 o 2 no se requerie que se muestere la puntacion ni nada solo el canvan.

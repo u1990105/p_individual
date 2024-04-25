@@ -19,6 +19,10 @@ addEventListener('load', function() {
         .finally(()=>window.location.assign("./html/phasergame.html"));
     });
 
+    document.getElementById('ranking').addEventListener('click', function(){
+        window.location.assign("./html/puntuacions.html");
+    });
+
     document.getElementById('exit').addEventListener('click', function(){
         console.warn("No es pot sortir!");
     });

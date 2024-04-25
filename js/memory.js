@@ -67,7 +67,7 @@ export var game = function(){
     return {
         init: function (call){
             if (sessionStorage.save){ // Load game
-                let partida = JSON.parse(sessionStorage.save);
+                let partida = JSON.parse(sessionStorage.save); //possiblemente cambiar el session por locker...
                 pairs = partida.pairs;
                 health = partida.health;
                 partida.cards.map(item=>{
@@ -145,6 +145,8 @@ export var game = function(){
                     }
                     if (health <= 0){
                         alert ("Has perdut");
+                        options.ranking.push(["ccacac","11111"])
+                        localStorage.options = JSON.stringify(options);
                         window.location.replace("../");
                     }
                 }
@@ -156,6 +158,7 @@ export var game = function(){
                 uuid: localStorage.uuid,
                 pairs: pairs,
                 health: health,
+                // añadir todos los campos 
                 cards: []
             };
             cards.forEach(c=>{
@@ -169,23 +172,7 @@ export var game = function(){
 
             let json_partida = JSON.stringify(partida);
 
-            fetch("../php/save.php",{
-                method: "POST",
-                body: json_partida,
-                headers: {"content-type":"application/json; charset=UTF-8"}
-            })
-            .then(response=>response.json())
-            .then(json => {
-                console.log(json);
-            })
-            .catch(err=>{
-                console.log(err);
-                localStorage.save = json_partida;
-                console.log(localStorage.save);
-            })
-            .finally(()=>{
-                window.location.replace("../");
-            });
+            //lockerstorage
         }
     }
 }();
