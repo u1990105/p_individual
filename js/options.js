@@ -21,17 +21,13 @@ var options = function(){
     difficulty.on('change',()=>options.difficulty = difficulty.val());
     leveldif.on('change',()=>options.leveldif = Number(leveldif.val()));
     nickname.on('change',()=>options.nickname = nickname.val());
-
-    console.log(localStorage.ranking)
-
-    if (localStorage.ranking.length == 0){
-        console.log("1")
-        options.ranking = []
-    }
-
+   
     return { 
         applyChanges: function(){
             options.pointRanking = 0;
+            if (localStorage.ranking === null){
+                options.ranking = [];
+            }
             localStorage.options = JSON.stringify(options);
         },
         defaultValues: function(){

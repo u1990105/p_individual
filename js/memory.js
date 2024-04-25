@@ -70,6 +70,8 @@ export var game = function(){
                 let partida = JSON.parse(sessionStorage.save); //possiblemente cambiar el session por locker...
                 pairs = partida.pairs;
                 health = partida.health;
+                leveldif = partida.leveldif;
+                difficulty = partida.difficulty;
                 partida.cards.map(item=>{
                     let it = Object.create(card);
                     it.front = item.front;
@@ -145,7 +147,7 @@ export var game = function(){
                     }
                     if (health <= 0){
                         alert ("Has perdut");
-                        options.ranking.push(["ccacac","11111"])
+                        options.ranking.push([options.nickname,options.pointRanking]);
                         localStorage.options = JSON.stringify(options);
                         window.location.replace("../");
                     }
@@ -158,7 +160,9 @@ export var game = function(){
                 uuid: localStorage.uuid,
                 pairs: pairs,
                 health: health,
-                // añadir todos los campos 
+                health: health,
+                leveldif: leveldif,
+                difficulty: difficulty,
                 cards: []
             };
             cards.forEach(c=>{
@@ -169,10 +173,8 @@ export var game = function(){
                     waiting: c.waiting
                 });
             });
-
-            let json_partida = JSON.stringify(partida);
-
-            //lockerstorage
+            localStorage.save = JSON.stringify(partida);
+            window.location.replace("../");
         }
     }
 }();
