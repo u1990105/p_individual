@@ -29,9 +29,14 @@ export class PlayScene extends Phaser.Scene{
             c.setInteractive();
             c.on('pointerup', ()=> gController.click(this.cards[i]));
         });
-
-        var buttonSave = this.add.text(100, 100, 'Click Me!', { fill: '#000' });
-        buttonSave.setInteractive();
+            
+        var buttonSave = this.add.graphics();
+        var buttonColor = 0x1998fa;
+        buttonSave.fillStyle(buttonColor, 1);
+        buttonSave.fillRect(50, 90, 160, 80);
+        var buttonText = this.add.text(130, 120, 'SAVE', { fill: '#fff', fontSize: '24px' });
+        buttonText.setOrigin(0.5);
+        buttonSave.setInteractive(new Phaser.Geom.Rectangle(50, 90, 160, 80), Phaser.Geom.Rectangle.Contains);
         buttonSave.on('pointerdown', ()=> gController.save());
     }
 

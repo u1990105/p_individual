@@ -3,32 +3,34 @@
 	<head>
         <script src="../library/jquery.min.js"></script>
         <script src="../js/options.js" type="module"></script>
+        <link rel="stylesheet" href="../styles/menu.css">
 		<title> Memory - Opcions </title>
 	</head>
 	<body>
 		<h1>Opcions</h1>
-        <h2>Mode de Joc</h2>
-        <label for="mode">escull mode: </label>
-        <select id="mode">
-            <option value="mode1" selected>mode 1</option>
-            <option value="mode2">mode 2</option>
-        </select>
-        <label for="nickname">Nombre:</label>
-        <input type="text" id="nickname"/>
-        <button id="default">Per defecte</button>
-        <button id="apply">Aplicar</button>
-        <h2>mode 1</h2>
-        <label for="pairs">Número de pares de cartas</label>
-        <input type="number" id="pairs" value="2" min="2" max="16">
-        <label for="dif">Dificultat</label>
-        <select id="dif">
+        <div>
+            <h2>Mode de Joc</h2>
+            <label for="mode">Escull mode: </label>
+            <select id="mode">
+            <option value="mode1" selected>Mode 1</option>
+            <option value="mode2">Mode 2</option>
+            </select>
+            <label for="nickname">Nombre:</label>
+            <input type="text" id="nickname"/>
+            <h2>Mode 1</h2>
+            <label for="pairs">Nombre de pares de cartas</label>
+            <input type="number" id="pairs" value="2" min="2" max="16">
+            <label for="dif">Dificultat</label>
+            <select id="dif">
             <option value="easy">Baixa</option>
             <option value="normal" selected>Normal</option>
             <option value="hard">Alta</option>
-        </select>
-        <h2>mode 2</h2>
-        <label for="leveldif">Nivel de dificultat</label>
-        <input type="number" id="leveldif" value="1" min="1">
-        
+            </select>
+            <h2>Mode 2</h2>
+            <label for="leveldif">Nivell de dificultat</label>
+            <input type="number" id="leveldif" value="1" min="1">
+        </div>
+        <button id="default">Per defecte</button>
+        <button id="apply">Aplicar</button>
 	</body>
 </html>

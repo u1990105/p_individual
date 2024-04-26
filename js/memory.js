@@ -128,7 +128,7 @@ export var game = function(){
                 if (card.check(lastCard)){
                     pairs--;
                     if (pairs <= 0){
-                        alert("Has guanyat amb " + health + " punts!");
+                        alert("Has guanyat :) amb " + health + " punts!");
                         if (sessionStorage.mode == "mode1"){
                             window.location.replace("../");
                         } else {
@@ -146,8 +146,10 @@ export var game = function(){
                         health -= Math.min(5*leveldif, 100);
                     }
                     if (health <= 0){
-                        alert ("Has perdut");
-                        options.ranking.push([options.nickname,options.pointRanking]);
+                        alert ("Has perdut :C");
+                        if (options.pointRanking != 0){
+                            options.ranking.push([options.nickname,options.pointRanking]);
+                        }
                         localStorage.options = JSON.stringify(options);
                         window.location.replace("../");
                     }

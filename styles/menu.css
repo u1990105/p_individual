@@ -1,16 +1,27 @@
+html {
+	text-align: center;
+}
 #title, .center{
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-button.center{
+button {
 	width: 6rem;
 	height: 3rem;
 	margin-top: 1rem;
+	border-radius: 15px;
 }
 
-#title{
-	color:red;
-	text-align: center;
+h1{
+	color:rgb(84, 90, 165);
+}
+
+h2 {
+	color:rgb(99, 109, 241);
+}
+
+html {
+	background-color: aliceblue;
 }

@@ -11,7 +11,7 @@ addEventListener('load', function() {
 
     document.getElementById('ranking').addEventListener('click', function(){
         if (localStorage.ranking === null){
-            alert("Has de jugar almenos una!!!");
+            alert("Has de jugar almenys una i guanyar-la perquè puguis entrar !!!");
         } else {
             window.location.assign("./html/puntuacions.html");
         }
