@@ -53,7 +53,7 @@ $('#apply').on('click',function(){
     if (document.getElementById('nickname').value == ""){
         alert("Requiere añadir nombre de jugador!!!");
     } else {
-        window.location.assign("../../html/phasergame.html");
+        window.location.assign("../html/phasergame.html");
     }
     
 });
